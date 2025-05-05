@@ -1,0 +1,802 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/profiles": {
+      "put": {
+        "operationId": "ProfilesController_submit",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmitProfileDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
+    "/profiles/user/{id}": {
+      "get": {
+        "operationId": "ProfilesController_tempGetProfile",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Profiles"
+        ]
+      }
+    },
+    "/accounts/identify": {
+      "get": {
+        "operationId": "AccountsController_identify",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
+    "/accounts": {
+      "get": {
+        "operationId": "AccountsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Account"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      },
+      "put": {
+        "operationId": "AccountsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
+    "/accounts/{id}": {
+      "delete": {
+        "operationId": "AccountsController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      },
+      "patch": {
+        "operationId": "AccountsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
+    "/accounts/{id}/jwt": {
+      "patch": {
+        "operationId": "AccountsController_resetJwtKey",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      },
+      "get": {
+        "operationId": "AccountsController_generateJwt",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountGenerateJwtResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Accounts"
+        ]
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "operationId": "AdminController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminLoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminLoginResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/admin/identify": {
+      "get": {
+        "operationId": "AdminController_identify",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminIdentifyResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "UsersController_find",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/users/{id}/capes": {
+      "get": {
+        "operationId": "UsersController_findCapes",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersFindCapesResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/users/{id}/capes/update": {
+      "get": {
+        "operationId": "UsersController_updateUserCapes",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Namet.ag API",
+    "description": "Namet.ag public API documentation",
+    "version": "0.0.1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "SubmitProfileDto": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "description": "The base64 encoded texture packet provided by Minecraft"
+          },
+          "signature": {
+            "type": "string",
+            "description": "The signature for the base64 string"
+          }
+        },
+        "required": [
+          "value",
+          "signature"
+        ]
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The Profile's unique ID"
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "The date that the profile was signed by Minecraft"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The UUID of the player associated with the Profile"
+          },
+          "username": {
+            "type": "string",
+            "description": "The username of the player associated with the Profile"
+          },
+          "slim": {
+            "type": "boolean",
+            "description": "Whether the skin of the player associated with the Profile is slim"
+          },
+          "skin": {
+            "description": "The skin of the player associated with the Profile",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Skin"
+              }
+            ]
+          },
+          "capeUrl": {
+            "type": "string",
+            "description": "The URL of the cape of the player associated with the Profile"
+          }
+        },
+        "required": [
+          "id",
+          "timestamp",
+          "uuid",
+          "username",
+          "slim"
+        ]
+      },
+      "Skin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the Skin"
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to the image of the Skin"
+          },
+          "profile": {
+            "description": "The Profile associated with the Skin",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Profile"
+              }
+            ]
+          },
+          "firstSeen": {
+            "format": "date-time",
+            "type": "string",
+            "description": "The date that the Skin was first seen by Namet.ag"
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "firstSeen"
+        ]
+      },
+      "Account": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The UUID of the Account"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the Account"
+          },
+          "createdAt": {
+            "type": "number",
+            "description": "The date that the Account was created"
+          },
+          "updatedAt": {
+            "type": "number",
+            "description": "The date that the account was last modified"
+          },
+          "jwtKey": {
+            "type": "string",
+            "description": "One of the keys used to identify if a JWT is valid for the Account"
+          },
+          "namespaces": {
+            "description": "The permissions that the Account has",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt",
+          "jwtKey",
+          "namespaces"
+        ]
+      },
+      "CreateAccountDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the Account"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateAccountDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The new name of the Account"
+          },
+          "namespaces": {
+            "description": "The new permissions of the account",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AccountGenerateJwtResponse": {
+        "type": "object",
+        "properties": {
+          "jwt": {
+            "type": "string",
+            "description": "The newly generated JWT"
+          }
+        },
+        "required": [
+          "jwt"
+        ]
+      },
+      "AdminLoginDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The admin username"
+          },
+          "password": {
+            "type": "string",
+            "description": "The admin password"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "AdminLoginResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username of the logged in admin"
+          },
+          "jwt": {
+            "type": "string",
+            "description": "The newly generated JWT"
+          }
+        },
+        "required": [
+          "username",
+          "jwt"
+        ]
+      },
+      "AdminIdentifyResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username of the admin"
+          }
+        },
+        "required": [
+          "username"
+        ]
+      },
+      "CapeService": {
+        "type": "string",
+        "enum": [
+          "cosmetica",
+          "cloaks-plus",
+          "mantle",
+          "official",
+          "minecraft-capes",
+          "optifine",
+          "lunar-client",
+          "labymod",
+          "5zig",
+          "badlion",
+          "essential",
+          "feather-client",
+          "skinmc"
+        ],
+        "description": "The external service that the Cape is from"
+      },
+      "Cape": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the Cape"
+          },
+          "service": {
+            "description": "The external service that the Cape is from",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CapeService"
+              }
+            ]
+          },
+          "firstSeen": {
+            "format": "date-time",
+            "type": "string",
+            "description": "The date that the Cape was first seen by Namet.ag"
+          },
+          "textureHash": {
+            "type": "string",
+            "description": "The SHA1 hash of the image"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "The generated thumbnail of the Cape"
+          },
+          "texture": {
+            "type": "string",
+            "description": "The image URL of the Cape"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the Cape"
+          },
+          "frames": {
+            "type": "integer",
+            "description": "The number of animated frames that the Cape has"
+          },
+          "ticksPerFrame": {
+            "type": "integer",
+            "description": "The number of ticks (50ms) that each frame should be displayed for"
+          },
+          "hasElytra": {
+            "type": "boolean",
+            "description": "Whether the Cape image has an elytra"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the Cape"
+          },
+          "dateUploaded": {
+            "type": "number",
+            "description": "The date that the Cape was uploaded to the external service"
+          },
+          "websiteUrl": {
+            "type": "string",
+            "description": "The URL to the associated webpage of the Cape"
+          },
+          "creator": {
+            "type": "string",
+            "description": "The UUID of the user that created the Cape"
+          }
+        },
+        "required": [
+          "id",
+          "service",
+          "firstSeen",
+          "textureHash",
+          "texture",
+          "frames",
+          "ticksPerFrame",
+          "hasElytra"
+        ]
+      },
+      "CapeConnection": {
+        "type": "object",
+        "properties": {
+          "cape": {
+            "description": "The cape",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Cape"
+              }
+            ]
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the cape is currently equipped by the user on the external service"
+          }
+        },
+        "required": [
+          "cape",
+          "active"
+        ]
+      },
+      "UsersFindCapesResponse": {
+        "type": "object",
+        "properties": {
+          "lastChecked": {
+            "type": "number",
+            "description": "The date that the user's capes were last checked"
+          },
+          "capes": {
+            "description": "The user's capes from external services",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CapeConnection"
+            }
+          },
+          "processTime": {
+            "type": "number",
+            "description": "The number of milliseconds that Namet.ag took to complete the query"
+          }
+        },
+        "required": [
+          "capes",
+          "processTime"
+        ]
+      }
+    }
+  }
+}
