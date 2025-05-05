@@ -3,7 +3,7 @@
   "paths": {
     "/profiles": {
       "put": {
-        "operationId": "ProfilesController_submit",
+        "operationId": "submitProfile",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -32,32 +32,9 @@
         ]
       }
     },
-    "/profiles/user/{id}": {
-      "get": {
-        "operationId": "ProfilesController_tempGetProfile",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Profiles"
-        ]
-      }
-    },
     "/accounts/identify": {
       "get": {
-        "operationId": "AccountsController_identify",
+        "operationId": "identifyAccount",
         "parameters": [],
         "responses": {
           "200": {
@@ -81,7 +58,7 @@
     },
     "/accounts": {
       "get": {
-        "operationId": "AccountsController_findAll",
+        "operationId": "getAllAccounts",
         "parameters": [],
         "responses": {
           "200": {
@@ -106,7 +83,7 @@
         ]
       },
       "put": {
-        "operationId": "AccountsController_create",
+        "operationId": "createAccount",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -140,7 +117,7 @@
     },
     "/accounts/{id}": {
       "delete": {
-        "operationId": "AccountsController_delete",
+        "operationId": "deleteAccount",
         "parameters": [
           {
             "name": "id",
@@ -164,7 +141,7 @@
         ]
       },
       "patch": {
-        "operationId": "AccountsController_update",
+        "operationId": "updateAccount",
         "parameters": [
           {
             "name": "id",
@@ -204,7 +181,7 @@
     },
     "/accounts/{id}/jwt": {
       "patch": {
-        "operationId": "AccountsController_resetJwtKey",
+        "operationId": "resetAccountJwtKey",
         "parameters": [
           {
             "name": "id",
@@ -232,7 +209,7 @@
         ]
       },
       "get": {
-        "operationId": "AccountsController_generateJwt",
+        "operationId": "generateAccountJwt",
         "parameters": [
           {
             "name": "id",
@@ -262,7 +239,7 @@
     },
     "/admin/login": {
       "post": {
-        "operationId": "AdminController_login",
+        "operationId": "loginAdmin",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -296,7 +273,7 @@
     },
     "/admin/identify": {
       "get": {
-        "operationId": "AdminController_identify",
+        "operationId": "identifyAdmin",
         "parameters": [],
         "responses": {
           "200": {
@@ -320,7 +297,7 @@
     },
     "/users/{id}": {
       "get": {
-        "operationId": "UsersController_find",
+        "operationId": "getUser",
         "parameters": [
           {
             "name": "id",
@@ -362,7 +339,7 @@
     },
     "/users/{id}/capes": {
       "get": {
-        "operationId": "UsersController_findCapes",
+        "operationId": "getUserCapes",
         "parameters": [
           {
             "name": "id",
@@ -401,7 +378,7 @@
     },
     "/users/{id}/capes/update": {
       "get": {
-        "operationId": "UsersController_updateUserCapes",
+        "operationId": "updateUserCapes",
         "parameters": [
           {
             "name": "id",
@@ -436,7 +413,12 @@
     "contact": {}
   },
   "tags": [],
-  "servers": [],
+  "servers": [
+    {
+      "url": "https://api.namet.ag",
+      "description": "Production API"
+    }
+  ],
   "components": {
     "schemas": {
       "SubmitProfileDto": {
