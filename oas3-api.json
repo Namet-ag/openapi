@@ -404,12 +404,48 @@
           "Users"
         ]
       }
+    },
+    "/users/search/{query}": {
+      "get": {
+        "operationId": "search",
+        "parameters": [
+          {
+            "name": "query",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersSearchResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Users"
+        ]
+      }
     }
   },
   "info": {
     "title": "Namet.ag API",
     "description": "Namet.ag public API documentation",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "contact": {}
   },
   "tags": [],
@@ -776,6 +812,26 @@
         },
         "required": [
           "capes",
+          "processTime"
+        ]
+      },
+      "UsersSearchResponse": {
+        "type": "object",
+        "properties": {
+          "profiles": {
+            "description": "The Profiles found matching the search query",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Profile"
+            }
+          },
+          "processTime": {
+            "type": "number",
+            "description": "The number of milliseconds that Namet.ag took to complete the query"
+          }
+        },
+        "required": [
+          "profiles",
           "processTime"
         ]
       }
