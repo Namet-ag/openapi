@@ -32,6 +32,45 @@
         ]
       }
     },
+    "/skins/{id}": {
+      "get": {
+        "operationId": "getSkin",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Skin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Skins"
+        ]
+      }
+    },
     "/accounts/identify": {
       "get": {
         "operationId": "identifyAccount",
@@ -445,7 +484,7 @@
   "info": {
     "title": "Namet.ag API",
     "description": "Namet.ag public API documentation",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "contact": {}
   },
   "tags": [],
