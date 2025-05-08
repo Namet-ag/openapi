@@ -484,7 +484,7 @@
   "info": {
     "title": "Namet.ag API",
     "description": "Namet.ag public API documentation",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "contact": {}
   },
   "tags": [],
@@ -577,8 +577,7 @@
             ]
           },
           "firstSeen": {
-            "format": "date-time",
-            "type": "string",
+            "type": "number",
             "description": "The date that the Skin was first seen by Namet.ag"
           }
         },
