@@ -113,6 +113,45 @@
         ]
       }
     },
+    "/capes/{id}": {
+      "get": {
+        "operationId": "getCape",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cape"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Capes"
+        ]
+      }
+    },
     "/accounts/identify": {
       "get": {
         "operationId": "identifyAccount",
@@ -568,7 +607,7 @@
   "info": {
     "title": "Namet.ag API",
     "description": "Namet.ag public API documentation",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "contact": {}
   },
   "tags": [],
@@ -669,6 +708,101 @@
           "id",
           "url",
           "firstSeen"
+        ]
+      },
+      "CapeService": {
+        "type": "string",
+        "enum": [
+          "cosmetica",
+          "cloaks-plus",
+          "mantle",
+          "official",
+          "minecraft-capes",
+          "optifine",
+          "lunar-client",
+          "labymod",
+          "5zig",
+          "badlion",
+          "essential",
+          "feather-client",
+          "skinmc"
+        ],
+        "description": "The external service that the Cape is from"
+      },
+      "Cape": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique ID of the Cape"
+          },
+          "service": {
+            "description": "The external service that the Cape is from",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CapeService"
+              }
+            ]
+          },
+          "firstSeen": {
+            "format": "date-time",
+            "type": "string",
+            "description": "The date that the Cape was first seen by Namet.ag"
+          },
+          "textureHash": {
+            "type": "string",
+            "description": "The SHA1 hash of the image"
+          },
+          "thumbnail": {
+            "type": "string",
+            "description": "The generated thumbnail of the Cape"
+          },
+          "texture": {
+            "type": "string",
+            "description": "The image URL of the Cape"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the Cape"
+          },
+          "frames": {
+            "type": "integer",
+            "description": "The number of animated frames that the Cape has"
+          },
+          "ticksPerFrame": {
+            "type": "integer",
+            "description": "The number of ticks (50ms) that each frame should be displayed for"
+          },
+          "hasElytra": {
+            "type": "boolean",
+            "description": "Whether the Cape image has an elytra"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the Cape"
+          },
+          "dateUploaded": {
+            "type": "number",
+            "description": "The date that the Cape was uploaded to the external service"
+          },
+          "websiteUrl": {
+            "type": "string",
+            "description": "The URL to the associated webpage of the Cape"
+          },
+          "creator": {
+            "type": "string",
+            "description": "The UUID of the user that created the Cape"
+          }
+        },
+        "required": [
+          "id",
+          "service",
+          "firstSeen",
+          "textureHash",
+          "texture",
+          "frames",
+          "ticksPerFrame",
+          "hasElytra"
         ]
       },
       "Account": {
@@ -795,101 +929,6 @@
         },
         "required": [
           "username"
-        ]
-      },
-      "CapeService": {
-        "type": "string",
-        "enum": [
-          "cosmetica",
-          "cloaks-plus",
-          "mantle",
-          "official",
-          "minecraft-capes",
-          "optifine",
-          "lunar-client",
-          "labymod",
-          "5zig",
-          "badlion",
-          "essential",
-          "feather-client",
-          "skinmc"
-        ],
-        "description": "The external service that the Cape is from"
-      },
-      "Cape": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The unique ID of the Cape"
-          },
-          "service": {
-            "description": "The external service that the Cape is from",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CapeService"
-              }
-            ]
-          },
-          "firstSeen": {
-            "format": "date-time",
-            "type": "string",
-            "description": "The date that the Cape was first seen by Namet.ag"
-          },
-          "textureHash": {
-            "type": "string",
-            "description": "The SHA1 hash of the image"
-          },
-          "thumbnail": {
-            "type": "string",
-            "description": "The generated thumbnail of the Cape"
-          },
-          "texture": {
-            "type": "string",
-            "description": "The image URL of the Cape"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the Cape"
-          },
-          "frames": {
-            "type": "integer",
-            "description": "The number of animated frames that the Cape has"
-          },
-          "ticksPerFrame": {
-            "type": "integer",
-            "description": "The number of ticks (50ms) that each frame should be displayed for"
-          },
-          "hasElytra": {
-            "type": "boolean",
-            "description": "Whether the Cape image has an elytra"
-          },
-          "description": {
-            "type": "string",
-            "description": "The description of the Cape"
-          },
-          "dateUploaded": {
-            "type": "number",
-            "description": "The date that the Cape was uploaded to the external service"
-          },
-          "websiteUrl": {
-            "type": "string",
-            "description": "The URL to the associated webpage of the Cape"
-          },
-          "creator": {
-            "type": "string",
-            "description": "The UUID of the user that created the Cape"
-          }
-        },
-        "required": [
-          "id",
-          "service",
-          "firstSeen",
-          "textureHash",
-          "texture",
-          "frames",
-          "ticksPerFrame",
-          "hasElytra"
         ]
       },
       "CapeConnection": {
